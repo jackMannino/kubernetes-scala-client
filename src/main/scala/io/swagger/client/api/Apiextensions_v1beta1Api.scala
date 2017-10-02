@@ -16,7 +16,6 @@ import io.swagger.client.model.IoK8sApiextensionsApiserverPkgApisApiextensionsV1
 import io.swagger.client.model.IoK8sApiextensionsApiserverPkgApisApiextensionsV1beta1CustomResourceDefinitionList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -276,52 +275,6 @@ class Apiextensions_v1beta1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiextensionsApiserverPkgApisApiextensionsV1beta1CustomResourceDefinitionList]).asInstanceOf[IoK8sApiextensionsApiserverPkgApisApiextensionsV1beta1CustomResourceDefinitionList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified CustomResourceDefinition
-   * @param name name of the CustomResourceDefinition 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiextensionsApiserverPkgApisApiextensionsV1beta1CustomResourceDefinition
-   */
-  def patchApiextensionsV1beta1CustomResourceDefinition(name: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiextensionsApiserverPkgApisApiextensionsV1beta1CustomResourceDefinition] = {
-    // create path and map variables
-    val path = "/apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Apiextensions_v1beta1Api->patchApiextensionsV1beta1CustomResourceDefinition")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Apiextensions_v1beta1Api->patchApiextensionsV1beta1CustomResourceDefinition")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiextensionsApiserverPkgApisApiextensionsV1beta1CustomResourceDefinition]).asInstanceOf[IoK8sApiextensionsApiserverPkgApisApiextensionsV1beta1CustomResourceDefinition])
         case _ => None
       }
     } catch {

@@ -16,7 +16,6 @@ import io.swagger.client.model.IoK8sApiSettingsV1alpha1PodPreset
 import io.swagger.client.model.IoK8sApiSettingsV1alpha1PodPresetList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -351,56 +350,6 @@ class Settings_v1alpha1Api(val defBasePath: String = "https://localhost",
       case ex: ApiException => throw ex
     }
   }
-
-  /**
-   * 
-   * partially update the specified PodPreset
-   * @param name name of the PodPreset 
-   * @param namespace object name and auth scope, such as for teams and projects 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiSettingsV1alpha1PodPreset
-   */
-  def patchSettingsV1alpha1NamespacedPodPreset(name: String, namespace: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiSettingsV1alpha1PodPreset] = {
-    // create path and map variables
-    val path = "/apis/settings.k8s.io/v1alpha1/namespaces/{namespace}/podpresets/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "namespace" + "\\}",apiInvoker.escape(namespace))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Settings_v1alpha1Api->patchSettingsV1alpha1NamespacedPodPreset")
-
-    if (namespace == null) throw new Exception("Missing required parameter 'namespace' when calling Settings_v1alpha1Api->patchSettingsV1alpha1NamespacedPodPreset")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Settings_v1alpha1Api->patchSettingsV1alpha1NamespacedPodPreset")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiSettingsV1alpha1PodPreset]).asInstanceOf[IoK8sApiSettingsV1alpha1PodPreset])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
   /**
    * 
    * read the specified PodPreset

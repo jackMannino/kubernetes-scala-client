@@ -16,7 +16,6 @@ import io.swagger.client.model.IoK8sApiStorageV1StorageClass
 import io.swagger.client.model.IoK8sApiStorageV1StorageClassList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -276,52 +275,6 @@ class Storage_v1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiStorageV1StorageClassList]).asInstanceOf[IoK8sApiStorageV1StorageClassList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified StorageClass
-   * @param name name of the StorageClass 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiStorageV1StorageClass
-   */
-  def patchStorageV1StorageClass(name: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiStorageV1StorageClass] = {
-    // create path and map variables
-    val path = "/apis/storage.k8s.io/v1/storageclasses/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Storage_v1Api->patchStorageV1StorageClass")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Storage_v1Api->patchStorageV1StorageClass")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiStorageV1StorageClass]).asInstanceOf[IoK8sApiStorageV1StorageClass])
         case _ => None
       }
     } catch {

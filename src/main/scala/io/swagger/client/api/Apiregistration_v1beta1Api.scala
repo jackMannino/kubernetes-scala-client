@@ -14,7 +14,6 @@ package io.swagger.client.api
 
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.model.IoK8sKubeAggregatorPkgApisApiregistrationV1beta1APIService
@@ -276,52 +275,6 @@ class Apiregistration_v1beta1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sKubeAggregatorPkgApisApiregistrationV1beta1APIServiceList]).asInstanceOf[IoK8sKubeAggregatorPkgApisApiregistrationV1beta1APIServiceList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified APIService
-   * @param name name of the APIService 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sKubeAggregatorPkgApisApiregistrationV1beta1APIService
-   */
-  def patchApiregistrationV1beta1APIService(name: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sKubeAggregatorPkgApisApiregistrationV1beta1APIService] = {
-    // create path and map variables
-    val path = "/apis/apiregistration.k8s.io/v1beta1/apiservices/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Apiregistration_v1beta1Api->patchApiregistrationV1beta1APIService")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Apiregistration_v1beta1Api->patchApiregistrationV1beta1APIService")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sKubeAggregatorPkgApisApiregistrationV1beta1APIService]).asInstanceOf[IoK8sKubeAggregatorPkgApisApiregistrationV1beta1APIService])
         case _ => None
       }
     } catch {

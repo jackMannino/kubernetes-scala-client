@@ -16,7 +16,6 @@ import io.swagger.client.model.IoK8sApiPolicyV1beta1PodDisruptionBudget
 import io.swagger.client.model.IoK8sApiPolicyV1beta1PodDisruptionBudgetList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -344,104 +343,6 @@ class Policy_v1beta1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiPolicyV1beta1PodDisruptionBudgetList]).asInstanceOf[IoK8sApiPolicyV1beta1PodDisruptionBudgetList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified PodDisruptionBudget
-   * @param name name of the PodDisruptionBudget 
-   * @param namespace object name and auth scope, such as for teams and projects 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiPolicyV1beta1PodDisruptionBudget
-   */
-  def patchPolicyV1beta1NamespacedPodDisruptionBudget(name: String, namespace: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiPolicyV1beta1PodDisruptionBudget] = {
-    // create path and map variables
-    val path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "namespace" + "\\}",apiInvoker.escape(namespace))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Policy_v1beta1Api->patchPolicyV1beta1NamespacedPodDisruptionBudget")
-
-    if (namespace == null) throw new Exception("Missing required parameter 'namespace' when calling Policy_v1beta1Api->patchPolicyV1beta1NamespacedPodDisruptionBudget")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Policy_v1beta1Api->patchPolicyV1beta1NamespacedPodDisruptionBudget")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiPolicyV1beta1PodDisruptionBudget]).asInstanceOf[IoK8sApiPolicyV1beta1PodDisruptionBudget])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update status of the specified PodDisruptionBudget
-   * @param name name of the PodDisruptionBudget 
-   * @param namespace object name and auth scope, such as for teams and projects 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiPolicyV1beta1PodDisruptionBudget
-   */
-  def patchPolicyV1beta1NamespacedPodDisruptionBudgetStatus(name: String, namespace: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiPolicyV1beta1PodDisruptionBudget] = {
-    // create path and map variables
-    val path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}/status".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "namespace" + "\\}",apiInvoker.escape(namespace))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Policy_v1beta1Api->patchPolicyV1beta1NamespacedPodDisruptionBudgetStatus")
-
-    if (namespace == null) throw new Exception("Missing required parameter 'namespace' when calling Policy_v1beta1Api->patchPolicyV1beta1NamespacedPodDisruptionBudgetStatus")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Policy_v1beta1Api->patchPolicyV1beta1NamespacedPodDisruptionBudgetStatus")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiPolicyV1beta1PodDisruptionBudget]).asInstanceOf[IoK8sApiPolicyV1beta1PodDisruptionBudget])
         case _ => None
       }
     } catch {

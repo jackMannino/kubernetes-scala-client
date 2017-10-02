@@ -18,7 +18,6 @@ import io.swagger.client.model.IoK8sApiAdmissionregistrationV1alpha1InitializerC
 import io.swagger.client.model.IoK8sApiAdmissionregistrationV1alpha1InitializerConfigurationList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -485,98 +484,6 @@ class Admissionregistration_v1alpha1Api(val defBasePath: String = "https://local
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiAdmissionregistrationV1alpha1InitializerConfigurationList]).asInstanceOf[IoK8sApiAdmissionregistrationV1alpha1InitializerConfigurationList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified ExternalAdmissionHookConfiguration
-   * @param name name of the ExternalAdmissionHookConfiguration 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiAdmissionregistrationV1alpha1ExternalAdmissionHookConfiguration
-   */
-  def patchAdmissionregistrationV1alpha1ExternalAdmissionHookConfiguration(name: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiAdmissionregistrationV1alpha1ExternalAdmissionHookConfiguration] = {
-    // create path and map variables
-    val path = "/apis/admissionregistration.k8s.io/v1alpha1/externaladmissionhookconfigurations/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Admissionregistration_v1alpha1Api->patchAdmissionregistrationV1alpha1ExternalAdmissionHookConfiguration")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Admissionregistration_v1alpha1Api->patchAdmissionregistrationV1alpha1ExternalAdmissionHookConfiguration")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiAdmissionregistrationV1alpha1ExternalAdmissionHookConfiguration]).asInstanceOf[IoK8sApiAdmissionregistrationV1alpha1ExternalAdmissionHookConfiguration])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified InitializerConfiguration
-   * @param name name of the InitializerConfiguration 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiAdmissionregistrationV1alpha1InitializerConfiguration
-   */
-  def patchAdmissionregistrationV1alpha1InitializerConfiguration(name: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiAdmissionregistrationV1alpha1InitializerConfiguration] = {
-    // create path and map variables
-    val path = "/apis/admissionregistration.k8s.io/v1alpha1/initializerconfigurations/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Admissionregistration_v1alpha1Api->patchAdmissionregistrationV1alpha1InitializerConfiguration")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Admissionregistration_v1alpha1Api->patchAdmissionregistrationV1alpha1InitializerConfiguration")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiAdmissionregistrationV1alpha1InitializerConfiguration]).asInstanceOf[IoK8sApiAdmissionregistrationV1alpha1InitializerConfiguration])
         case _ => None
       }
     } catch {

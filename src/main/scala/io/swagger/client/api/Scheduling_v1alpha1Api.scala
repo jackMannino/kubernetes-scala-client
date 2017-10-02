@@ -16,7 +16,6 @@ import io.swagger.client.model.IoK8sApiSchedulingV1alpha1PriorityClass
 import io.swagger.client.model.IoK8sApiSchedulingV1alpha1PriorityClassList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -276,52 +275,6 @@ class Scheduling_v1alpha1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiSchedulingV1alpha1PriorityClassList]).asInstanceOf[IoK8sApiSchedulingV1alpha1PriorityClassList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified PriorityClass
-   * @param name name of the PriorityClass 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiSchedulingV1alpha1PriorityClass
-   */
-  def patchSchedulingV1alpha1PriorityClass(name: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiSchedulingV1alpha1PriorityClass] = {
-    // create path and map variables
-    val path = "/apis/scheduling.k8s.io/v1alpha1/priorityclasses/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Scheduling_v1alpha1Api->patchSchedulingV1alpha1PriorityClass")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Scheduling_v1alpha1Api->patchSchedulingV1alpha1PriorityClass")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiSchedulingV1alpha1PriorityClass]).asInstanceOf[IoK8sApiSchedulingV1alpha1PriorityClass])
         case _ => None
       }
     } catch {

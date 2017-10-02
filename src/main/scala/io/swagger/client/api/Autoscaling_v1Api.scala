@@ -16,7 +16,7 @@ import io.swagger.client.model.IoK8sApiAutoscalingV1HorizontalPodAutoscaler
 import io.swagger.client.model.IoK8sApiAutoscalingV1HorizontalPodAutoscalerList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
+
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -344,104 +344,6 @@ class Autoscaling_v1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiAutoscalingV1HorizontalPodAutoscalerList]).asInstanceOf[IoK8sApiAutoscalingV1HorizontalPodAutoscalerList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified HorizontalPodAutoscaler
-   * @param name name of the HorizontalPodAutoscaler 
-   * @param namespace object name and auth scope, such as for teams and projects 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiAutoscalingV1HorizontalPodAutoscaler
-   */
-  def patchAutoscalingV1NamespacedHorizontalPodAutoscaler(name: String, namespace: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiAutoscalingV1HorizontalPodAutoscaler] = {
-    // create path and map variables
-    val path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "namespace" + "\\}",apiInvoker.escape(namespace))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Autoscaling_v1Api->patchAutoscalingV1NamespacedHorizontalPodAutoscaler")
-
-    if (namespace == null) throw new Exception("Missing required parameter 'namespace' when calling Autoscaling_v1Api->patchAutoscalingV1NamespacedHorizontalPodAutoscaler")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Autoscaling_v1Api->patchAutoscalingV1NamespacedHorizontalPodAutoscaler")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiAutoscalingV1HorizontalPodAutoscaler]).asInstanceOf[IoK8sApiAutoscalingV1HorizontalPodAutoscaler])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update status of the specified HorizontalPodAutoscaler
-   * @param name name of the HorizontalPodAutoscaler 
-   * @param namespace object name and auth scope, such as for teams and projects 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiAutoscalingV1HorizontalPodAutoscaler
-   */
-  def patchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus(name: String, namespace: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiAutoscalingV1HorizontalPodAutoscaler] = {
-    // create path and map variables
-    val path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}/status".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "namespace" + "\\}",apiInvoker.escape(namespace))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Autoscaling_v1Api->patchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus")
-
-    if (namespace == null) throw new Exception("Missing required parameter 'namespace' when calling Autoscaling_v1Api->patchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Autoscaling_v1Api->patchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiAutoscalingV1HorizontalPodAutoscaler]).asInstanceOf[IoK8sApiAutoscalingV1HorizontalPodAutoscaler])
         case _ => None
       }
     } catch {

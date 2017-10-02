@@ -1,0 +1,29 @@
+### OSX ###
+.DS_Store
+
+### Scala ###
+*.class
+*.log
+logs/
+logs/*
+# sbt specific
+.cache/
+.history/
+.lib/
+dist/*
+target/
+target/streams/*
+target/streams/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+project/target/*
+project/target/
+
+# Intellij-IDE specific
+.scala_dependencies
+.worksheet
+.idea
+.idea/
+.idea/*

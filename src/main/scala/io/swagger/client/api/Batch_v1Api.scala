@@ -16,7 +16,6 @@ import io.swagger.client.model.IoK8sApiBatchV1Job
 import io.swagger.client.model.IoK8sApiBatchV1JobList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -344,104 +343,6 @@ class Batch_v1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiBatchV1JobList]).asInstanceOf[IoK8sApiBatchV1JobList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified Job
-   * @param name name of the Job 
-   * @param namespace object name and auth scope, such as for teams and projects 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiBatchV1Job
-   */
-  def patchBatchV1NamespacedJob(name: String, namespace: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiBatchV1Job] = {
-    // create path and map variables
-    val path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "namespace" + "\\}",apiInvoker.escape(namespace))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Batch_v1Api->patchBatchV1NamespacedJob")
-
-    if (namespace == null) throw new Exception("Missing required parameter 'namespace' when calling Batch_v1Api->patchBatchV1NamespacedJob")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Batch_v1Api->patchBatchV1NamespacedJob")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiBatchV1Job]).asInstanceOf[IoK8sApiBatchV1Job])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update status of the specified Job
-   * @param name name of the Job 
-   * @param namespace object name and auth scope, such as for teams and projects 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiBatchV1Job
-   */
-  def patchBatchV1NamespacedJobStatus(name: String, namespace: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiBatchV1Job] = {
-    // create path and map variables
-    val path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}/status".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "namespace" + "\\}",apiInvoker.escape(namespace))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Batch_v1Api->patchBatchV1NamespacedJobStatus")
-
-    if (namespace == null) throw new Exception("Missing required parameter 'namespace' when calling Batch_v1Api->patchBatchV1NamespacedJobStatus")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Batch_v1Api->patchBatchV1NamespacedJobStatus")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiBatchV1Job]).asInstanceOf[IoK8sApiBatchV1Job])
         case _ => None
       }
     } catch {

@@ -16,7 +16,6 @@ import io.swagger.client.model.IoK8sApiCertificatesV1beta1CertificateSigningRequ
 import io.swagger.client.model.IoK8sApiCertificatesV1beta1CertificateSigningRequestList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1APIResourceList
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1DeleteOptions
-import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Patch
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1Status
 import io.swagger.client.model.IoK8sApimachineryPkgApisMetaV1WatchEvent
 import io.swagger.client.ApiInvoker
@@ -276,52 +275,6 @@ class Certificates_v1beta1Api(val defBasePath: String = "https://localhost",
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiCertificatesV1beta1CertificateSigningRequestList]).asInstanceOf[IoK8sApiCertificatesV1beta1CertificateSigningRequestList])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * 
-   * partially update the specified CertificateSigningRequest
-   * @param name name of the CertificateSigningRequest 
-   * @param body  
-   * @param pretty If &#39;true&#39;, then the output is pretty printed. (optional)
-   * @return IoK8sApiCertificatesV1beta1CertificateSigningRequest
-   */
-  def patchCertificatesV1beta1CertificateSigningRequest(name: String, body: IoK8sApimachineryPkgApisMetaV1Patch, pretty: Option[String] = None): Option[IoK8sApiCertificatesV1beta1CertificateSigningRequest] = {
-    // create path and map variables
-    val path = "/apis/certificates.k8s.io/v1beta1/certificatesigningrequests/{name}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json-patch+json", "application/merge-patch+json", "application/strategic-merge-patch+json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling Certificates_v1beta1Api->patchCertificatesV1beta1CertificateSigningRequest")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling Certificates_v1beta1Api->patchCertificatesV1beta1CertificateSigningRequest")
-
-    pretty.map(paramVal => queryParams += "pretty" -> paramVal.toString)
-    
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PATCH", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[IoK8sApiCertificatesV1beta1CertificateSigningRequest]).asInstanceOf[IoK8sApiCertificatesV1beta1CertificateSigningRequest])
         case _ => None
       }
     } catch {
