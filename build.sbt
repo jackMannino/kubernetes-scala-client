@@ -2,8 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     version := "1.0.0",
     name := "swagger-scala-client",
-    organization := "io.swagger",
-    scalaVersion := "2.12.1",
+    scalaVersion := "2.12.3",
 
     libraryDependencies ++= Seq(
       "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
