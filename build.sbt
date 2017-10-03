@@ -1,32 +1,17 @@
-lazy val root = (project in file(".")).
-  settings(
-    version := "1.0.0",
-    name := "swagger-scala-client",
-    scalaVersion := "2.12.3",
+name := "kubernetes-scala-client"
 
-    libraryDependencies ++= Seq(
-      "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
-      "com.sun.jersey" % "jersey-core" % "1.19",
-      "com.sun.jersey" % "jersey-client" % "1.19",
-      "com.sun.jersey.contribs" % "jersey-multipart" % "1.19",
-      "org.jfarcand" % "jersey-ahc-client" % "1.0.5",
-      "io.swagger" % "swagger-core" % "1.5.8",
-      "joda-time" % "joda-time" % "2.2",
-      "org.joda" % "joda-convert" % "1.2",
-      "org.scalatest" % "scalatest_2.12" % "3.0.4" % "test",
-      "junit" % "junit" % "4.8.1" % "test"
-    ),
+version := "0.1"
 
-    resolvers ++= Seq(
-      Resolver.jcenterRepo,
-      Resolver.mavenLocal
-    ),
+scalaVersion := "2.12.3"
 
-    scalacOptions := Seq(
-      "-unchecked",
-      "-deprecation",
-      "-feature"
-    ),
-
-    publishArtifact in(Compile, packageDoc) := false
-  )
+libraryDependencies ++= Seq(
+  "io.swagger" % "swagger-core" % "1.5.16",
+  "joda-time" % "joda-time" % "2.9.9",
+  "org.joda" % "joda-convert" % "1.9.2",
+  "com.typesafe" % "config" % "1.2.1",
+  "com.typesafe.akka" % "akka-actor_2.12" % "2.5.6",
+  "org.json4s" % "json4s-jackson_2.12" % "3.5.3" exclude("org.scala-lang", "scala-xml"),
+  "com.typesafe.akka" % "akka-http_2.12" % "10.0.10",
+  "com.typesafe.akka" % "akka-http-spray-json_2.12" % "10.0.10",
+  "com.typesafe.akka" % "akka-stream_2.12" % "2.5.6"
+)
