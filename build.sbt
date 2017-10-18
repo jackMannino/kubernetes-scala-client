@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
     version := "1.0.0",
-    name := "swagger-scala-client",
+    name := "kubernetes-scala-client",
     scalaVersion := "2.12.3",
 
     libraryDependencies ++= Seq(
